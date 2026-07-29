@@ -1,335 +1,539 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mil Studio — Web Design</title>
-<meta name="description" content="Mil Studio designs clean, fast, mobile-friendly websites for small businesses. Based in Northern California.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#f6f4ef;--paper-2:#efece4;--ink:#16151b;--ink-2:#2c2a33;
-    --muted:#6b6770;--faint:#9a96a0;--line:#e1ddd4;--white:#fff;
-    --accent:#2b44ff;--accent-2:#e9ecff;--accent-deep:#1a2fd6;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{font-family:"Inter",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
-  ::selection{background:var(--accent);color:#fff}
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
-  .display{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;line-height:1.02;letter-spacing:-.02em}
-  .eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mil-Studio — Professional Website Templates</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #d97a44;
+      --dark: #1c1d1f;
+      --light: #f7f4ee;
+      --text: #242220;
+      --muted: #6b6659;
+      --line: #e4ded2;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Archivo', serif;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
 
-  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Inter";font-weight:600;font-size:14.5px;
-    padding:13px 24px;border-radius:100px;cursor:pointer;border:1.5px solid transparent;transition:transform .18s,background .18s,color .18s,border-color .18s}
-  .btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-  .btn-fill{background:var(--accent);color:#fff}
-  .btn-fill:hover{background:var(--accent-deep);transform:translateY(-2px)}
-  .btn-dark{background:var(--ink);color:var(--paper)}
-  .btn-dark:hover{transform:translateY(-2px);background:#000}
-  .btn-out{border-color:var(--ink);color:var(--ink)}
-  .btn-out:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(28, 29, 31, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(217, 122, 68, 0.2);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5em;
+      font-weight: 800;
+      color: white;
+    }
+    .logo span {
+      color: var(--primary);
+    }
+    nav a {
+      color: white;
+      font-size: 0.95em;
+      margin: 0 20px;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
 
-  /* NAV */
-  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s,padding .3s;padding:20px 0}
-  header.nav.solid{background:rgba(246,244,239,.85);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:13px 0}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque";font-weight:700;font-size:20px;letter-spacing:-.01em}
-  .brand .mark{width:26px;height:26px;border-radius:7px;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800}
-  .navlinks{display:flex;align-items:center;gap:30px}
-  .navlinks a{font-size:14.5px;font-weight:500;color:var(--ink-2);position:relative;padding:3px 0}
-  .navlinks a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--accent);transition:width .22s}
-  .navlinks a:hover::after{width:100%}
-  .burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
-  .burger span{width:24px;height:2px;background:var(--ink);display:block}
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #26282b 100%);
+      color: white;
+      padding: 140px 0 80px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5em, 6vw, 4em);
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2em;
+      color: #c9c6bf;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-  /* HERO */
-  .hero{padding:170px 0 90px;position:relative}
-  .hero .eyebrow{margin-bottom:22px}
-  .hero h1{font-size:clamp(44px,8vw,92px);max-width:15ch;margin-bottom:26px}
-  .hero h1 em{font-style:normal;color:var(--accent)}
-  .hero p{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:52ch;margin-bottom:34px}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-  .hero-deco{position:absolute;top:120px;right:-60px;width:340px;height:340px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%,var(--accent-2),transparent 70%);z-index:-1;opacity:.8}
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      font-weight: 600;
+      font-size: 1em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #e89656;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(217, 122, 68, 0.3);
+    }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
-  /* marquee strip */
-  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;background:var(--paper-2)}
-  .strip-t{display:flex;width:max-content;white-space:nowrap;animation:scroll 30s linear infinite;gap:0}
-  .strip-t span{font-family:"Bricolage Grotesque";font-weight:600;font-size:18px;padding:0 24px;display:inline-flex;align-items:center;gap:24px;color:var(--ink-2)}
-  .strip-t span::after{content:"●";color:var(--accent);font-size:7px}
-  @keyframes scroll{to{transform:translateX(-50%)}}
+    /* PRODUCTS */
+    .products {
+      padding: 100px 0;
+    }
+    .section-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-head h2 {
+      font-size: 2.5em;
+      margin-bottom: 12px;
+    }
+    .section-head p {
+      font-size: 1.1em;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+    .product-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .product-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+    .product-header {
+      padding: 30px;
+      background: var(--light);
+      border-bottom: 1px solid var(--line);
+    }
+    .product-header h3 {
+      font-size: 1.6em;
+      margin-bottom: 8px;
+    }
+    .price {
+      font-size: 2.2em;
+      color: var(--primary);
+      font-weight: 800;
+      margin: 16px 0;
+    }
+    .product-body {
+      padding: 30px;
+    }
+    .features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    .features li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--muted);
+    }
+    .features li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    .product-actions {
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+    }
+    .product-actions a {
+      text-align: center;
+    }
 
-  .sec{padding:100px 0}
-  .sec-head{margin-bottom:50px}
-  .sec-head .eyebrow{display:block;margin-bottom:14px}
-  .sec-head h2{font-size:clamp(32px,5vw,56px);max-width:16ch}
-  .sec-head p{color:var(--muted);font-size:16.5px;max-width:50ch;margin-top:16px}
+    /* VINICON SHOWCASE */
+    .vinicon-showcase {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    .vinicon-header {
+      padding: 40px;
+      background: linear-gradient(135deg, var(--dark) 0%, #26282b 100%);
+      color: white;
+      text-align: center;
+    }
+    .vinicon-header h3 {
+      font-size: 2em;
+      margin-bottom: 12px;
+    }
+    .vinicon-header p {
+      color: #c9c6bf;
+      margin-bottom: 20px;
+    }
+    .vinicon-versions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+    .version-item {
+      padding: 30px;
+      border-right: 1px solid var(--line);
+      text-align: center;
+    }
+    .version-item:last-child {
+      border-right: none;
+    }
+    .version-item h4 {
+      font-size: 1.4em;
+      margin-bottom: 12px;
+    }
+    .version-price {
+      font-size: 2em;
+      color: var(--primary);
+      font-weight: 800;
+      margin: 12px 0 20px;
+    }
+    .version-item p {
+      color: var(--muted);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
 
-  /* WORK */
-  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-  .project{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
-  .project:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(22,21,27,.35)}
-  .browser{background:var(--paper-2);padding:11px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--line)}
-  .browser i{width:11px;height:11px;border-radius:50%;background:#d6d1c7;display:inline-block}
-  .browser .url{margin-left:10px;font-size:12px;color:var(--faint);font-family:"Inter";background:var(--white);padding:4px 12px;border-radius:20px;border:1px solid var(--line)}
-  .project .shot{aspect-ratio:16/10;overflow:hidden;position:relative}
-  .project .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-  .project:hover .shot img{transform:scale(1.04)}
-  .project .info{padding:22px 24px 26px}
-  .project .tags{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-  .tag{font-size:11.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--accent);background:var(--accent-2);padding:5px 11px;border-radius:20px}
-  .project h3{font-family:"Bricolage Grotesque";font-weight:700;font-size:24px;margin-bottom:8px}
-  .project p{color:var(--muted);font-size:14.5px;margin-bottom:18px}
-  .project .view{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:3px}
-  .project .view:hover{gap:13px;transition:gap .2s}
+    /* TERMS */
+    .terms-section {
+      background: var(--dark);
+      color: white;
+      padding: 80px 0;
+    }
+    .terms-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .terms-content h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .guarantee-box {
+      background: rgba(217, 122, 68, 0.1);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+    .guarantee-box h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.4em;
+    }
+    .guarantee-box p {
+      color: #c9c6bf;
+      font-size: 1.05em;
+      line-height: 1.8;
+    }
+    .terms-list {
+      color: #c9c6bf;
+      line-height: 1.8;
+    }
+    .terms-list h4 {
+      color: white;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+    .terms-list li {
+      margin-bottom: 10px;
+      margin-left: 20px;
+    }
 
-  /* SERVICES */
-  .services{background:var(--ink);color:var(--paper)}
-  .services .sec-head h2{color:var(--paper)}
-  .services .sec-head p{color:#a9a4b0}
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .svc{border:1px solid rgba(246,244,239,.16);border-radius:16px;padding:28px;background:rgba(246,244,239,.03)}
-  .svc .ic{width:46px;height:46px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-  .svc .ic svg{width:24px;height:24px;fill:#fff}
-  .svc h3{font-family:"Bricolage Grotesque";font-weight:600;font-size:20px;margin-bottom:9px}
-  .svc p{color:#a9a4b0;font-size:14.5px}
+    /* CONTACT */
+    .contact-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+    .contact-section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .contact-section p {
+      font-size: 1.1em;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+    .contact-email {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 30px;
+    }
 
-  /* PROCESS */
-  .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
-  .step{position:relative;padding-top:30px}
-  .step .num{font-family:"Bricolage Grotesque";font-weight:800;font-size:54px;color:var(--accent);opacity:.25;line-height:1;position:absolute;top:-12px;left:0}
-  .step h3{font-family:"Bricolage Grotesque";font-weight:700;font-size:21px;margin-bottom:8px;position:relative}
-  .step p{color:var(--muted);font-size:14.5px}
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #c9c6bf;
+      padding: 40px 0 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
 
-  /* ABOUT */
-  .about{background:var(--paper-2)}
-  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
-  .about h2{font-size:clamp(30px,4.5vw,48px);margin-bottom:22px}
-  .about p{color:var(--ink-2);font-size:16.5px;margin-bottom:16px}
-  .about .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:30px}
-  .about .card .row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}
-  .about .card .row:last-child{border-bottom:none}
-  .about .card .row .k{color:var(--muted)}
-  .about .card .row .v{font-weight:600}
-
-  /* CONTACT */
-  .contact{padding:110px 0;text-align:center}
-  .contact .eyebrow{margin-bottom:18px}
-  .contact h2{font-size:clamp(36px,6vw,72px);margin-bottom:22px}
-  .contact p{color:var(--muted);font-size:18px;max-width:44ch;margin:0 auto 36px}
-  .contact-methods{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
-  .cm{display:inline-flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:100px;padding:14px 24px;font-weight:600;font-size:16px;transition:transform .18s,border-color .18s}
-  .cm:hover{transform:translateY(-2px);border-color:var(--accent)}
-  .cm svg{width:19px;height:19px;fill:var(--accent)}
-
-  footer{border-top:1px solid var(--line);padding:30px 0}
-  .foot-in{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
-  .foot-in .brand{font-size:17px;color:var(--ink)}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-  .reveal.in{opacity:1;transform:none}
-
-  @media(max-width:880px){
-    .work-grid,.about-grid{grid-template-columns:1fr;gap:30px}
-    .svc-grid,.process-grid{grid-template-columns:1fr}
-    .navlinks{display:none}
-    .burger{display:flex}
-  }
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}}
-</style>
+    @media (max-width: 900px) {
+      .vinicon-versions {
+        grid-template-columns: 1fr;
+      }
+      .version-item {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .version-item:last-child {
+        border-bottom: none;
+      }
+      nav a:not(.logo) {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<!-- NAV -->
-<header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#top"><span class="mark">M</span>Mil Studio</a>
-    <nav class="navlinks">
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="btn btn-fill" href="#contact" style="padding:10px 20px">Start a project</a>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-deco"></div>
-  <div class="wrap reveal">
-    <p class="eyebrow">Mil Studio — Web Design · Northern California</p>
-    <h1 class="display">Websites that make small businesses look <em>big.</em></h1>
-    <p>I'm Lucas, the designer behind Mil Studio. I build clean, fast, mobile-friendly websites that help local businesses get found, look professional, and turn visitors into customers.</p>
-    <div class="hero-cta">
-      <a class="btn btn-dark" href="#work">See my work</a>
-      <a class="btn btn-out" href="#contact">Get in touch</a>
+  <!-- NAV -->
+  <nav>
+    <div class="wrap nav-inner">
+      <div class="logo">MIL<span>-STUDIO</span></div>
+      <div>
+        <a href="#products">Templates</a>
+        <a href="#terms">Terms</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- STRIP -->
-<div class="strip" aria-hidden="true">
-  <div class="strip-t">
-    <span>Custom Websites</span><span>Redesigns</span><span>Mobile-First</span><span>Fast Turnaround</span><span>Get Online</span><span>Built to Convert</span>
-    <span>Custom Websites</span><span>Redesigns</span><span>Mobile-First</span><span>Fast Turnaround</span><span>Get Online</span><span>Built to Convert</span>
-  </div>
-</div>
-
-<!-- WORK -->
-<section class="sec" id="work">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Selected work</span>
-      <h2 class="display">Recent projects</h2>
-      <p>A look at sites I've designed and built — each one custom, responsive, and ready to launch.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Professional Website Templates</h1>
+      <p>Beautiful, conversion-focused websites for contractors, restaurants, and service businesses. Built by designers, ready to customize.</p>
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-primary">View Templates</a>
+        <a href="#terms" class="btn btn-ghost">Our Guarantee</a>
+      </div>
     </div>
-    <div class="work-grid">
+  </section>
 
-      <article class="project reveal">
-        <div class="browser"><i></i><i></i><i></i><span class="url">brendasoakland.com</span></div>
-        <div class="shot"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=900&q=80" alt="Brenda's Oakland website"></div>
-        <div class="info">
-          <div class="tags"><span class="tag">Restaurant</span><span class="tag">Custom build</span></div>
-          <h3>Brenda's Oakland</h3>
-          <p>A warm, New Orleans–inspired site for a beloved Oakland soul-food spot — full menu, story, hours, and reservations.</p>
-          <a class="view" href="https://milboiz.github.io/brendas-oakland/" target="_blank" rel="noopener">View live →</a>
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Our Templates</h2>
+        <p>High-converting website templates designed for specific industries. Each includes customization support and a 30-day money-back guarantee.</p>
+      </div>
+
+      <!-- BRENDA'S OAKLAND -->
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-header">
+            <h3>Brenda's Oakland</h3>
+            <div class="price">$350</div>
+            <p style="color: var(--muted); margin: 12px 0;">Restaurant & Café Template</p>
+          </div>
+          <div class="product-body">
+            <ul class="features">
+              <li>Hero with imagery</li>
+              <li>Story section</li>
+              <li>Full menu layout</li>
+              <li>Signature dishes gallery</li>
+              <li>Hours & location</li>
+              <li>Reservation links</li>
+              <li>Fully responsive</li>
+            </ul>
+            <div class="product-actions">
+              <a href="https://brendasoakland.com" target="_blank" class="btn btn-ghost">Live Demo</a>
+              <button class="btn btn-primary">Buy Template</button>
+            </div>
+          </div>
         </div>
-      </article>
+      </div>
 
-      <article class="project reveal">
-        <div class="browser"><i></i><i></i><i></i><span class="url">neighborhoodsc.com</span></div>
-        <div class="shot"><img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=900&q=80" alt="Neighborhood Sports Club website"></div>
-        <div class="info">
-          <div class="tags"><span class="tag">Sports club</span><span class="tag">E-commerce + booking</span></div>
-          <h3>Neighborhood Sports Club</h3>
-          <p>A bold site for an Oakland football club — pickup-session booking, a weekly fixtures board, and a shop with a working cart.</p>
-          <a class="view" href="https://milboiz.github.io/NSC-Website/" target="_blank" rel="noopener">View live →</a>
+      <!-- VINICON SHOWCASE -->
+      <div class="vinicon-showcase">
+        <div class="vinicon-header">
+          <h3>Vinicon Construction</h3>
+          <p>Professional General Contractor Website — Three Versions Available</p>
         </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="sec services" id="services">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">What I do</span>
-      <h2 class="display">Everything you need to get online</h2>
-      <p>From a first website to a full redesign — I handle the design, the build, and the launch.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="svc reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1zm1 4v8h14V9H5zm0-2h14V7H5z"/></svg></div>
-        <h3>Custom websites</h3>
-        <p>A site designed around your business from scratch — not a cookie-cutter template. Yours, and only yours.</p>
-      </div>
-      <div class="svc reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21 8 14 2 9.4h7.6z"/></svg></div>
-        <h3>Redesigns & refreshes</h3>
-        <p>Already have a site that feels dated or clunky on a phone? I'll modernize it and make it work everywhere.</p>
-      </div>
-      <div class="svc reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2zm0 16H7V6h10v12z"/></svg></div>
-        <h3>Mobile-first & fast</h3>
-        <p>Most people find you on their phone. Every site I build looks sharp and loads fast on any screen.</p>
-      </div>
-      <div class="svc reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14h-2v-2h2v2zm0-4h-2V6h2v6z"/></svg></div>
-        <h3>Menus, booking & ordering</h3>
-        <p>Wire up reservations, online ordering, or a shop — whatever turns your visitors into customers.</p>
-      </div>
-      <div class="svc reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
-        <h3>Get found on Google</h3>
-        <p>Clean structure and the basics of SEO so the right people land on your site when they search.</p>
-      </div>
-      <div class="svc reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></div>
-        <h3>Launch & handoff</h3>
-        <p>I get your site live on your own domain and show you how it works. No tech headaches on your end.</p>
+        <div class="vinicon-versions">
+          <div class="version-item">
+            <h4>Version 1</h4>
+            <div class="version-price">$400</div>
+            <p>Clean foundation with all essentials. Responsive, services grid, contact form, mobile optimized.</p>
+            <div style="display: flex; gap: 8px; flex-direction: column;">
+              <a href="https://viniconconstruction1.netlify.app/" target="_blank" class="btn btn-ghost" style="font-size: 0.9em;">View Demo</a>
+              <button class="btn btn-primary" style="font-size: 0.9em;">Buy Now</button>
+            </div>
+          </div>
+          <div class="version-item">
+            <h4>Version 2</h4>
+            <div class="version-price">$500</div>
+            <p>Enhanced with portfolio grid, testimonials section, stats strip, sticky nav, and scroll animations.</p>
+            <div style="display: flex; gap: 8px; flex-direction: column;">
+              <a href="https://viniconconstruction2.netlify.app/" target="_blank" class="btn btn-ghost" style="font-size: 0.9em;">View Demo</a>
+              <button class="btn btn-primary" style="font-size: 0.9em;">Buy Now</button>
+            </div>
+          </div>
+          <div class="version-item">
+            <h4>Version 3</h4>
+            <div class="version-price">$800</div>
+            <p>Premium with SVG graphics, staggered animations, floating CTA, advanced form validation, and optimizations.</p>
+            <div style="display: flex; gap: 8px; flex-direction: column;">
+              <a href="https://viniconconstruction3.netlify.app/" target="_blank" class="btn btn-ghost" style="font-size: 0.9em;">View Demo</a>
+              <button class="btn btn-primary" style="font-size: 0.9em;">Buy Now</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PROCESS -->
-<section class="sec" id="process">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">How it works</span>
-      <h2 class="display">Simple from start to launch</h2>
-    </div>
-    <div class="process-grid">
-      <div class="step reveal"><span class="num">01</span><h3>We chat</h3><p>A quick conversation about your business, your style, and what you need the site to do.</p></div>
-      <div class="step reveal"><span class="num">02</span><h3>I design it</h3><p>I build a custom concept you can see and react to — free to look at, no obligation.</p></div>
-      <div class="step reveal"><span class="num">03</span><h3>We launch</h3><p>Once you love it, I get it live on your own domain and hand it over, ready to go.</p></div>
-    </div>
-  </div>
-</section>
+  <!-- TERMS & GUARANTEE -->
+  <section class="terms-section" id="terms">
+    <div class="terms-content">
+      <h2>Service Agreement & Guarantee</h2>
 
-<!-- ABOUT -->
-<section class="sec about" id="about">
-  <div class="wrap about-grid">
-    <div class="reveal">
-      <span class="eyebrow">About</span>
-      <h2 class="display">Hi, I'm Lucas.</h2>
-      <p>I started Mil Studio to help small, independent businesses have websites that actually do them justice — clean, modern, and easy to use, without the agency price tag or the runaround.</p>
-      <p>I work closely and personally with every client: you get someone who cares about your project, answers your messages, and makes the whole thing painless. Whether you're opening your doors for the first time or refreshing a site that's gotten stale, I'd love to help.</p>
-    </div>
-    <div class="card reveal">
-      <div class="row"><span class="k">Studio</span><span class="v">Mil Studio</span></div>
-      <div class="row"><span class="k">Based in</span><span class="v">Northern California</span></div>
-      <div class="row"><span class="k">Works with</span><span class="v">Small businesses</span></div>
-      <div class="row"><span class="k">Specialty</span><span class="v">Custom sites & redesigns</span></div>
-      <div class="row"><span class="k">First concept</span><span class="v">Always free</span></div>
-    </div>
-  </div>
-</section>
+      <div class="guarantee-box">
+        <h3>🛡️ 30-Day Money-Back Guarantee</h3>
+        <p><strong>If your website doesn't work for any reason within 30 days of purchase, we'll refund your payment in full — no questions asked.</strong> Your satisfaction is guaranteed. If there are technical issues, compatibility problems, or you're simply not satisfied with the template, you get a complete refund.</p>
+      </div>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="wrap reveal">
-    <span class="eyebrow">Get in touch</span>
-    <h2 class="display">Let's build something.</h2>
-    <p>Tell me about your business and what you have in mind. The first concept is on me.</p>
-    <div class="contact-methods">
-      <a class="cm" href="mailto:Lukey1000two@gmail.com">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        Lukey1000two@gmail.com
-      </a>
-      <a class="cm" href="tel:+15104229790">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
-        (510) 422-9790
-      </a>
+      <div class="terms-list">
+        <h4>Basic Terms of Service</h4>
+        <ul>
+          <li><strong>What You Get:</strong> A fully functional, production-ready HTML/CSS/JavaScript website template with all source code and assets.</li>
+          <li><strong>License:</strong> You receive a single-use license to customize and deploy the template for your own business or client project.</li>
+          <li><strong>Customization:</strong> Templates are designed to be easily customizable. You can modify colors, text, images, and layouts to match your brand.</li>
+          <li><strong>Support:</strong> Basic support includes setup assistance and troubleshooting for the first 30 days after purchase.</li>
+          <li><strong>No Resale:</strong> The template license is non-transferable. You may not resell, redistribute, or share the template code without explicit permission.</li>
+        </ul>
+
+        <h4>30-Day Refund Policy</h4>
+        <ul>
+          <li><strong>Eligibility:</strong> All purchases are eligible for a full refund within 30 days of the purchase date, regardless of reason.</li>
+          <li><strong>Technical Issues:</strong> If the template doesn't display correctly, has broken functionality, or doesn't work in your environment, we'll provide a full refund or fix the issue at no cost.</li>
+          <li><strong>Not a Good Fit:</strong> If after reviewing the template you decide it's not right for your project, you're fully refunded — no explanations needed.</li>
+          <li><strong>How to Request:</strong> Email us at <strong>support@mil-studio.com</strong> with your purchase date and reason (if you'd like to share). We'll process your refund within 5 business days.</li>
+        </ul>
+
+        <h4>Additional Terms</h4>
+        <ul>
+          <li><strong>Hosting:</strong> Templates do not include hosting. You'll need to deploy the website to a hosting provider (Netlify, Vercel, Bluehost, etc.).</li>
+          <li><strong>Updates:</strong> Updates and improvements to templates may be released. We'll notify you of major updates and provide them at no additional cost during your first year.</li>
+          <li><strong>Disclaimer:</strong> Templates are provided as-is. We make no warranty that templates will meet all your specific requirements or be error-free.</li>
+          <li><strong>Intellectual Property:</strong> You own the customizations you make. Mil-Studio retains copyright to the original template design and code.</li>
+        </ul>
+
+        <h4>Payment & Refunds</h4>
+        <ul>
+          <li>Payments are processed securely through Stripe/Gumroad and are non-refundable except as stated in this agreement.</li>
+          <li>If you request a refund within 30 days, we'll issue it to your original payment method within 5 business days.</li>
+          <li>After 30 days, refunds are at our discretion but can still be considered for technical issues.</li>
+        </ul>
+
+        <h4>Contact</h4>
+        <ul>
+          <li>For questions about this agreement, refunds, or support: <strong>support@mil-studio.com</strong></li>
+          <li>For sales inquiries: <strong>sales@mil-studio.com</strong></li>
+        </ul>
+      </div>
     </div>
-    <div style="margin-top:14px"><a class="btn btn-fill" href="mailto:Lukey1000two@gmail.com">Start a project</a></div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap foot-in">
-    <span class="brand" style="display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque';font-weight:700"><span class="mark" style="width:24px;height:24px;border-radius:6px;background:var(--accent);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px">M</span>Mil Studio</span>
-    <span>© 2026 Mil Studio · Web design in Northern California</span>
-    <span>Lukey1000two@gmail.com · (510) 422-9790</span>
-  </div>
-</footer>
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="wrap">
+      <h2>Ready to Get Started?</h2>
+      <p>Pick a template above, customize it to match your brand, and launch your professional website.</p>
+      <div class="contact-email">support@mil-studio.com</div>
+      <p style="color: var(--muted); font-size: 1em;">Questions? We're here to help.</p>
+    </div>
+  </section>
 
-<script>
-  const nav=document.getElementById('nav');
-  const onScroll=()=>nav.classList.toggle('solid',window.scrollY>30);
-  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
-  document.getElementById('burger').onclick=()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <p>&copy; 2026 Mil-Studio. All rights reserved. | <a href="#terms" style="color: var(--primary);">Terms</a> | <a href="#" style="color: var(--primary);">Privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
