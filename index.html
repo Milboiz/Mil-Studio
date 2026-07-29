@@ -99,6 +99,25 @@
   .svc h3{font-family:"Bricolage Grotesque";font-weight:600;font-size:20px;margin-bottom:9px}
   .svc p{color:#a9a4b0;font-size:14.5px}
 
+  /* PACKAGES */
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  .pkg{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:34px 28px;display:flex;flex-direction:column;position:relative;transition:transform .3s,box-shadow .3s}
+  .pkg:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(22,21,27,.35)}
+  .pkg.feat{border-color:var(--accent);box-shadow:0 24px 55px -30px rgba(43,68,255,.55)}
+  .pkg .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 15px;border-radius:100px;white-space:nowrap}
+  .pkg .pname{font-family:"Bricolage Grotesque";font-weight:700;font-size:23px;margin-bottom:7px}
+  .pkg .ptag{color:var(--muted);font-size:14px;margin-bottom:22px;min-height:42px}
+  .pkg .price{display:flex;align-items:baseline;gap:3px;margin-bottom:5px}
+  .pkg .price .cur{font-family:"Bricolage Grotesque";font-weight:700;font-size:26px;color:var(--ink-2)}
+  .pkg .price .amt{font-family:"Bricolage Grotesque";font-weight:800;font-size:46px;letter-spacing:-.02em;line-height:1}
+  .pkg .pnote{font-size:13px;color:var(--faint);margin-bottom:26px}
+  .pkg ul{list-style:none;margin:0 0 30px;display:flex;flex-direction:column;gap:13px}
+  .pkg li{display:flex;gap:11px;font-size:14.5px;color:var(--ink-2);line-height:1.4}
+  .pkg li svg{width:19px;height:19px;flex-shrink:0;margin-top:1px;fill:var(--accent)}
+  .pkg .btn{width:100%;justify-content:center;margin-top:auto}
+  .pkg-foot{text-align:center;color:var(--muted);font-size:14.5px;margin-top:36px}
+  .pkg-foot a{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent-2)}
+
   /* PROCESS */
   .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
   .step{position:relative;padding-top:30px}
@@ -136,7 +155,7 @@
 
   @media(max-width:880px){
     .work-grid,.about-grid{grid-template-columns:1fr;gap:30px}
-    .svc-grid,.process-grid{grid-template-columns:1fr}
+    .svc-grid,.process-grid,.pkg-grid{grid-template-columns:1fr}
     .navlinks{display:none}
     .burger{display:flex}
   }
@@ -152,6 +171,7 @@
     <nav class="navlinks">
       <a href="#work">Work</a>
       <a href="#services">Services</a>
+      <a href="#packages">Packages</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -261,6 +281,67 @@
   </div>
 </section>
 
+<!-- PACKAGES -->
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Packages &amp; pricing</span>
+      <h2 class="display">Simple packages, no surprises</h2>
+      <p>Clear pricing for a website done right. Every package includes a free first concept, a mobile-first build, and launch on your own domain.</p>
+    </div>
+    <div class="pkg-grid">
+
+      <div class="pkg reveal">
+        <div class="pname">Starter</div>
+        <div class="ptag">A sharp one-page site to get your business online fast.</div>
+        <div class="price"><span class="cur">$</span><span class="amt">600</span></div>
+        <div class="pnote">One-time · first concept free</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>One-page website, custom designed</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Mobile-first &amp; fast-loading</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Contact &amp; click-to-call</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Google Maps &amp; basic SEO</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Launch on your own domain</li>
+        </ul>
+        <a class="btn btn-out buy" data-plan="starter" href="#contact">Get started</a>
+      </div>
+
+      <div class="pkg feat reveal">
+        <div class="badge">Most popular</div>
+        <div class="pname">Business</div>
+        <div class="ptag">A complete multi-page site to help you get found and grow.</div>
+        <div class="price"><span class="cur">$</span><span class="amt">1,200</span></div>
+        <div class="pnote">One-time · first concept free</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Everything in Starter</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Up to 5 custom pages</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Menu, gallery or service pages</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Contact form + full Google setup</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Two rounds of revisions</li>
+        </ul>
+        <a class="btn btn-fill buy" data-plan="business" href="#contact">Get started</a>
+      </div>
+
+      <div class="pkg reveal">
+        <div class="pname">Premium</div>
+        <div class="ptag">A fully custom site with the features your business needs.</div>
+        <div class="price"><span class="cur">$</span><span class="amt">2,500</span></div>
+        <div class="pnote">One-time · first concept free</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Everything in Business</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Online ordering, booking or shop</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Unlimited pages</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Advanced SEO setup</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 5.5 12.7 4 14.2l5 5 11-11-1.5-1.4z"/></svg>Priority support &amp; revisions</li>
+        </ul>
+        <a class="btn btn-dark buy" data-plan="premium" href="#contact">Get started</a>
+      </div>
+
+    </div>
+    <p class="pkg-foot reveal">Not sure which fits? <a href="#contact">Tell me about your project</a> and I'll point you the right way.</p>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="sec" id="process">
   <div class="wrap">
@@ -330,6 +411,22 @@
   document.getElementById('burger').onclick=()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* PACKAGES — buy buttons.
+     Paste your Stripe Payment Link URLs below to turn on real checkout.
+     Until then, each button opens a pre-filled email so nothing is broken. */
+  const STRIPE_LINKS = { starter:"", business:"", premium:"" };
+  const PLAN_NAMES   = { starter:"Starter", business:"Business", premium:"Premium" };
+  document.querySelectorAll('.buy').forEach(b=>{
+    const plan=b.dataset.plan, link=STRIPE_LINKS[plan];
+    if(link){ b.href=link; b.target="_blank"; b.rel="noopener"; }
+    else{
+      const name=PLAN_NAMES[plan]||"a";
+      b.href="mailto:Lukey1000two@gmail.com"
+        +"?subject="+encodeURIComponent("Interested in the "+name+" package")
+        +"&body="+encodeURIComponent("Hi Lucas, I'd like to get started with the "+name+" package. Here's a bit about my business:\n\n");
+    }
+  });
 </script>
 </body>
 </html>
