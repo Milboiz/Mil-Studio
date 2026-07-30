@@ -206,6 +206,36 @@
     .burger{display:flex}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}}
+
+  /* CHECKOUT MODAL */
+  .modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(22,21,27,.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:40px 18px;overflow-y:auto}
+  .modal-overlay.open{display:flex}
+  .modal{background:var(--paper);border-radius:20px;max-width:560px;width:100%;padding:34px 32px 36px;position:relative;box-shadow:0 40px 90px -30px rgba(0,0,0,.5);margin:auto}
+  .modal-x{position:absolute;top:16px;right:18px;background:none;border:none;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);padding:4px}
+  .modal-x:hover{color:var(--ink)}
+  .modal .m-eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .modal h3{font-family:"Bricolage Grotesque";font-weight:700;font-size:26px;margin-bottom:6px}
+  .modal .m-item{color:var(--ink-2);font-size:15px;margin-bottom:18px}
+  .modal .m-item b{color:var(--accent)}
+  .contract{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:210px;overflow-y:auto;font-size:13.5px;line-height:1.55;color:var(--ink-2);margin-bottom:20px}
+  .contract h4{font-family:"Bricolage Grotesque";font-size:15px;margin:14px 0 4px;color:var(--ink)}
+  .contract h4:first-child{margin-top:0}
+  .contract p{margin-bottom:6px}
+  .fld{display:block;margin-bottom:14px;font-size:13.5px;font-weight:600;color:var(--ink-2)}
+  .fld input{display:block;width:100%;margin-top:6px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px;font-weight:400;color:var(--ink);background:var(--white)}
+  .fld input:focus{outline:none;border-color:var(--accent)}
+  .chk{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--ink-2);margin-bottom:22px;cursor:pointer}
+  .chk input{width:20px;height:20px;flex-shrink:0;margin-top:1px;accent-color:var(--accent)}
+  .modal form .btn{width:100%}
+  .m-legal{font-size:11.5px;color:var(--faint);margin-top:14px;text-align:center}
+  .pay{text-align:center}
+  .pay .qr{width:230px;max-width:78%;margin:14px auto 10px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:10px}
+  .pay .amt{font-family:"Bricolage Grotesque";font-weight:800;font-size:40px;color:var(--accent);margin:4px 0}
+  .pay .who{font-weight:600;font-size:16px}
+  .pay .memo{background:var(--accent-2);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--ink-2);margin:16px 0}
+  .pay .memo b{color:var(--ink)}
+  .pay .fine{font-size:13px;color:var(--muted);max-width:42ch;margin:0 auto}
+  .pay .recorded{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#1a7f4b;background:#e5f5ec;border-radius:100px;padding:6px 14px;margin-bottom:6px}
 </style>
 </head>
 <body>
@@ -633,6 +663,69 @@
   </div>
 </footer>
 
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkout" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+    <button class="modal-x" id="coClose" aria-label="Close">&times;</button>
+
+    <!-- STEP 1: agreement -->
+    <div id="coAgree">
+      <div class="m-eyebrow">Step 1 of 2 · Purchase agreement</div>
+      <h3 id="coTitle">Review &amp; agree</h3>
+      <p class="m-item">You're buying: <b id="coItem">—</b></p>
+
+      <div class="contract" id="contractBox">
+        <h4>1. What you're buying</h4>
+        <p>A single-use license to one Mil Studio website template (the one selected above), including its source code and the assets included with it, for use on one website for one business.</p>
+        <h4>2. Payment</h4>
+        <p>Full payment is made via Zelle to Lucas Mil (510-422-9790). Your template files and setup instructions are delivered after payment is received and confirmed.</p>
+        <h4>3. License &amp; use</h4>
+        <p>Your license is single-use and non-transferable. You may customize the template freely, but you may not resell, redistribute, sublicense, or share the template files with others.</p>
+        <h4>4. 30-day money-back guarantee</h4>
+        <p>If the template doesn't work for any reason within 30 days of purchase, you may request a 100% refund by emailing support@mil-studio.com with your purchase date.</p>
+        <h4>5. Support &amp; updates</h4>
+        <p>Includes 30 days of setup and troubleshooting support, plus free updates to your template for one year.</p>
+        <h4>6. Ownership</h4>
+        <p>Mil Studio retains ownership of the underlying template design. You own the content and customizations you add.</p>
+        <p style="margin-top:10px">By entering your name and checking the box below, you confirm you have read and agree to these terms.</p>
+      </div>
+
+      <form name="template-purchase" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="agreeForm">
+        <input type="hidden" name="form-name" value="template-purchase">
+        <input type="hidden" name="template" id="fTemplate">
+        <input type="hidden" name="price" id="fPrice">
+        <input type="hidden" name="agreed_at" id="fAgreedAt">
+        <p hidden><label>Leave blank: <input name="bot-field"></label></p>
+        <label class="fld">Full name (your signature)
+          <input type="text" name="name" id="fName" required autocomplete="name" placeholder="e.g. Jane Smith">
+        </label>
+        <label class="fld">Email
+          <input type="email" name="email" id="fEmail" required autocomplete="email" placeholder="you@example.com">
+        </label>
+        <label class="chk">
+          <input type="checkbox" name="agree" value="yes" required>
+          <span>I have read and agree to the Purchase Agreement above, and I understand payment is completed via Zelle.</span>
+        </label>
+        <button class="btn btn-fill" type="submit" id="agreeBtn">I agree — continue to payment</button>
+        <p class="m-legal">This is a basic click-to-agree record. For your jurisdiction, consider having a professional review your terms.</p>
+      </form>
+    </div>
+
+    <!-- STEP 2: Zelle payment -->
+    <div id="coPay" class="pay" hidden>
+      <div class="m-eyebrow">Step 2 of 2 · Payment</div>
+      <span class="recorded">&#10003; Agreement recorded</span>
+      <h3>Send payment with Zelle</h3>
+      <p class="m-item">Thanks, <span id="payName">there</span> — send the amount below to complete your order.</p>
+      <div class="amt" id="payAmt">$0</div>
+      <img class="qr" src="zelle-qr.jpg" alt="Zelle QR code for Lucas Mil, 510-422-9790" width="230" height="230">
+      <p class="who">LUCAS MIL · 510-422-9790</p>
+      <p class="memo">In the Zelle memo, put <b>your name</b> + <b id="payMemo">the template</b> so we can match your payment to your order.</p>
+      <p class="fine">After sending, email a screenshot to <b>support@mil-studio.com</b> and we'll deliver your template + instructions. Covered by the 30-day guarantee.</p>
+    </div>
+  </div>
+</div>
+
 <script>
   const nav=document.getElementById('nav');
   const onScroll=()=>nav.classList.toggle('solid',window.scrollY>30);
@@ -641,24 +734,58 @@
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  /* STORE — buy buttons.
-     Paste your Stripe Payment Link URLs below to turn on real card checkout.
-     Until then, each button opens a pre-filled order email so nothing is broken. */
-  const STRIPE_LINKS = { brendas:"", vinicon1:"", vinicon2:"", vinicon3:"" };
+  /* STORE — checkout flow: agree (recorded to Netlify Forms) -> pay with Zelle */
   const PRODUCTS = {
-    brendas:{name:"Brenda's Oakland template", price:"$350"},
-    vinicon1:{name:"Vinicon Construction v1", price:"$400"},
-    vinicon2:{name:"Vinicon Construction v2", price:"$500"},
-    vinicon3:{name:"Vinicon Construction v3", price:"$800"}
+    brendas:{name:"Brenda's Oakland template", price:"$350", memo:"Brenda's Oakland"},
+    vinicon1:{name:"Vinicon Construction v1", price:"$400", memo:"Vinicon v1"},
+    vinicon2:{name:"Vinicon Construction v2", price:"$500", memo:"Vinicon v2"},
+    vinicon3:{name:"Vinicon Construction v3", price:"$800", memo:"Vinicon v3"}
   };
+  const overlay=document.getElementById('checkout');
+  const stepAgree=document.getElementById('coAgree'), stepPay=document.getElementById('coPay');
+  const form=document.getElementById('agreeForm'), agreeBtn=document.getElementById('agreeBtn');
+  let currentKey=null;
+
+  function openCheckout(key){
+    const p=PRODUCTS[key]; if(!p) return;
+    currentKey=key;
+    stepPay.hidden=true; stepAgree.hidden=false;
+    form.reset(); agreeBtn.disabled=false; agreeBtn.textContent="I agree — continue to payment";
+    document.getElementById('coItem').textContent=p.name+" — "+p.price;
+    document.getElementById('fTemplate').value=p.name;
+    document.getElementById('fPrice').value=p.price;
+    document.getElementById('fAgreedAt').value=new Date().toISOString();
+    overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeCheckout(){
+    overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  function showPay(){
+    const p=PRODUCTS[currentKey];
+    document.getElementById('payName').textContent=(document.getElementById('fName').value||'there').trim();
+    document.getElementById('payAmt').textContent=p.price;
+    document.getElementById('payMemo').textContent=p.memo;
+    stepAgree.hidden=true; stepPay.hidden=false;
+    overlay.scrollTop=0;
+  }
+
   document.querySelectorAll('.buy').forEach(b=>{
-    const key=b.dataset.plan, link=STRIPE_LINKS[key], p=PRODUCTS[key]||{name:"a template",price:""};
-    if(link){ b.href=link; b.target="_blank"; b.rel="noopener"; }
-    else{
-      b.href="mailto:support@mil-studio.com"
-        +"?subject="+encodeURIComponent("Order: "+p.name+" "+p.price)
-        +"&body="+encodeURIComponent("Hi Mil Studio, I'd like to buy the "+p.name+" ("+p.price+"). Please send me payment + download details.\n\n");
-    }
+    b.addEventListener('click',e=>{ e.preventDefault(); openCheckout(b.dataset.plan); });
+  });
+  document.getElementById('coClose').onclick=closeCheckout;
+  overlay.addEventListener('click',e=>{ if(e.target===overlay) closeCheckout(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&overlay.classList.contains('open')) closeCheckout(); });
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+    agreeBtn.disabled=true; agreeBtn.textContent="Recording…";
+    const body=new URLSearchParams(new FormData(form)).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body})
+      .then(()=>showPay())
+      .catch(()=>{ /* if the record POST fails, still let them pay, but note it */ showPay(); });
   });
 </script>
 </body>
