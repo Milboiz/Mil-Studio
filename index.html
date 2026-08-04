@@ -91,6 +91,13 @@
   .project p{color:var(--muted);font-size:14.5px;margin-bottom:18px}
   .project .view{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:3px}
   .project .view:hover{gap:13px;transition:gap .2s}
+  .project .also{display:block;margin-top:10px;font-size:13px;font-weight:600;color:var(--muted)}
+  .project .also:hover{color:var(--accent)}
+
+  .custom-cta{margin-top:36px;background:var(--accent-2);border-radius:18px;padding:32px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .custom-cta h3{font-family:"Bricolage Grotesque";font-weight:700;font-size:21px;margin-bottom:6px}
+  .custom-cta p{color:var(--ink-2);font-size:14.5px;max-width:46ch}
+  .custom-cta .btn{white-space:nowrap}
 
   /* SERVICES */
   .services{background:var(--ink);color:var(--paper)}
@@ -204,6 +211,7 @@
     .svc-grid,.process-grid,.ladder{grid-template-columns:1fr}
     .navlinks{display:none}
     .burger{display:flex}
+    .custom-cta{flex-direction:column;align-items:flex-start;text-align:left}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}}
 
@@ -245,7 +253,7 @@
   <div class="wrap nav-in">
     <a class="brand" href="#top"><span class="mark">M</span>Mil Studio</a>
     <nav class="navlinks">
-      <a href="#work">Work</a>
+      <a href="#custom">Custom builds</a>
       <a href="#templates">Templates</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
@@ -265,7 +273,7 @@
     <p>We design and sell professional, fully responsive website templates — buy one, customize it in minutes, and go live today. Every template is clean, fast, and backed by a 30-day money-back guarantee.</p>
     <div class="hero-cta">
       <a class="btn btn-fill" href="#templates">Browse templates</a>
-      <a class="btn btn-out" href="#work">See our work</a>
+      <a class="btn btn-out" href="#custom">See custom builds</a>
     </div>
   </div>
 </section>
@@ -278,13 +286,13 @@
   </div>
 </div>
 
-<!-- WORK -->
-<section class="sec" id="work">
+<!-- CUSTOM BUILDS -->
+<section class="sec" id="custom">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Selected work</span>
-      <h2 class="display">Designed &amp; built by us</h2>
-      <p>Real sites we've designed — the same craft that goes into every template we sell.</p>
+      <span class="eyebrow">Built from scratch</span>
+      <h2 class="display">Or we build yours custom</h2>
+      <p>When a template isn't quite right, we design and build your site from a blank page — around your brand, your business, and the way you actually work. Here's real work we've done for real clients.</p>
     </div>
     <div class="work-grid">
 
@@ -303,13 +311,22 @@
         <div class="browser"><i></i><i></i><i></i><span class="url">tradesv3.netlify.app</span></div>
         <div class="shot"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80" alt="Trades website"></div>
         <div class="info">
-          <div class="tags"><span class="tag">Construction</span><span class="tag">Lead generation</span></div>
+          <div class="tags"><span class="tag">Construction</span><span class="tag">Custom build</span></div>
           <h3>Trades</h3>
           <p>A bold, professional contractor site — services, an animated project gallery, testimonials, and a quote-request form.</p>
           <a class="view" href="https://tradesv3.netlify.app" target="_blank" rel="noopener">View live →</a>
+          <a class="also" href="#templates">Also sold as a template, from $400 →</a>
         </div>
       </article>
 
+    </div>
+
+    <div class="custom-cta reveal">
+      <div>
+        <h3>Want something like this for your business?</h3>
+        <p>Tell us about your business and what you have in mind — the first concept is free, no obligation.</p>
+      </div>
+      <a class="btn btn-fill" href="mailto:Lukey1000two@gmail.com?subject=Custom%20website%20project">Start a custom project</a>
     </div>
   </div>
 </section>
